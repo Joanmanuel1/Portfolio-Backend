@@ -48,7 +48,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 //@CrossOrigin  ACCEDEN TODOS
 //@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app") ACCEDE UNO SOLO 
-@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app"}) // MULTIPLES CONEXIONES
+@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app", "https://portfolio-arg-programa.herokuapp.com/"}) // MULTIPLES CONEXIONES
 
 
 public class Controlador {
