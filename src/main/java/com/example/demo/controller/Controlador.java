@@ -245,14 +245,14 @@ public class Controlador {
             @PathVariable Long id, 
             @RequestParam ("nombre") String nuevoNombre, 
             @RequestParam ("descripcion") String nuevaDescripcion, 
-            @RequestParam ("fechaRealicacion") String fechaRealicacion,
-            @RequestParam ("enlacePagina") String nuevoEnlacePagina)
+            @RequestParam ("fechaRealizacion") String fechaRealizacion,
+            @RequestParam ("enlacePagina") String enlacePagina)
     {
           Proyectos pro =  interProyectos.findProyectos(id);
           pro.setNombre(nuevoNombre);
           pro.setDescripcion(nuevaDescripcion);
-          pro.setFechaRealizacion(fechaRealicacion);
-          pro.setEnlacePagina(nuevoEnlacePagina);
+          pro.setFechaRealizacion(fechaRealizacion);
+          pro.setEnlacePagina(enlacePagina);
           
           interProyectos.saveProyectos(pro);
           return pro;
