@@ -43,6 +43,9 @@ public class PersonaService implements IPersonaService{
                 return perso;
     }
 
-    
+    @Override
+    public boolean existsByEmail(String email) {
+       return persoRepository.existsByEmail(email);
+    }
  
 }
