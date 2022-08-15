@@ -103,6 +103,17 @@ public class Controlador {
 
         return perso;
     }
+  
+      @PutMapping("personas/editarLogueo/{id}")
+    public Persona editPersonaLogueo(
+            @PathVariable Long id,
+            @RequestParam("logueado") int nuevoLogueado) {
+
+        Persona perso = interPersona.findPersona(id);
+        perso.setLogueado(nuevoLogueado);
+        interPersona.savePersona(perso);
+        return perso;
+    }
 
     //Experiencia
     @Autowired
