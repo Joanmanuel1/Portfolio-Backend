@@ -32,4 +32,6 @@ public class Persona {
     private int edad;
     private String titulo;
     private String descripcion;
+    private int logueado;
+
 }
