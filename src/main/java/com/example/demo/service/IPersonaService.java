@@ -23,4 +23,7 @@ public interface IPersonaService {
     
     public Persona findPersona (Long id);
     
+    boolean existsByEmail(String email);
+
+    
 }
