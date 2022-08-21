@@ -1,24 +1,19 @@
 package com.example.demo.controller;
-
 import com.example.demo.model.Persona;
 import com.example.demo.service.IPersonaService;
-
 import com.example.demo.model.Educacion;
 import com.example.demo.service.IEducacionService;
-
 import com.example.demo.model.Experiencia;
 import com.example.demo.service.IExperienciaService;
-
 import com.example.demo.model.Proyectos;
 import com.example.demo.service.IProyectosService;
-
 import com.example.demo.model.HardSkills;
 import com.example.demo.service.IHardSkillsService;
-
 import com.example.demo.model.SoftSkills;
 import com.example.demo.service.ISoftSkillsService;
+import com.example.demo.model.Idioma;
+import com.example.demo.service.IIdiomaService;
 import java.time.Instant;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- *
- * @author usuario
- */
+
 @RestController
 
 //@CrossOrigin  ACCEDEN TODOS
@@ -45,45 +37,48 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app", "https://portfolio-arg-programa.herokuapp.com"}) // MULTIPLES CONEXIONES
                                                                                         
 public class Controlador {
-
     @Autowired
     private IPersonaService interPersona;
-
+    
+    /* Trae todas las personas */
     @GetMapping("/personas/traer")
     public List<Persona> getPersonas() {
-
         return interPersona.getPersonas();
     }
-
+    
+    /* Trae una persona
+       Parametro: ID */
     @GetMapping("/personas/traerUno/{id}")
     public Persona findPersona(@PathVariable Long id) {
-
-        // return interPersona.findPersona(id);
         Persona perso = interPersona.findPersona(id);
-
         return perso;
     }
-
+    
+    /* Trae un email
+       Parametro: Email */
     @GetMapping("/personas/traerEmail/{email}")
-    public Boolean findPersonaEmail(@PathVariable String email) {
+    public Boolean existsByEmail(@PathVariable String email) {
         return interPersona.existsByEmail(email) == true;
     }
-
+    
+    @GetMapping("/personas/traerPassword/{password}")
+    public Boolean existsByPassword(@PathVariable String password){
+        return interPersona.existsByPassword(password) == true;
+    }
+    
+    
+    /* Crea una persona
+       Parametro: Persona */
     @PostMapping("/personas/crear")
     public String createStudent(@RequestBody Persona perso) {
-
         interPersona.savePersona(perso);
-
         return "La persona fue creada correctamente";
     }
 
     @DeleteMapping("/personas/borrar/{id}")
     public String deletePersona(@PathVariable Long id) {
-
         interPersona.deletePersona(id);
-
         return "La persona fue eliminada correctamente";
-
     }
 
     @PutMapping("personas/editar/{id}")
@@ -91,24 +86,21 @@ public class Controlador {
             @PathVariable Long id,
             @RequestParam("nombre") String nuevoNombre,
             @RequestParam("apellido") String nuevoApellido,
-            @RequestParam("edad") int nuevaEdad) {
-
+            @RequestParam("titulo") String nuevoTitulo,
+            @RequestParam("descripcion") String nuevoDescripcion){
         Persona perso = interPersona.findPersona(id);
-
         perso.setApellido(nuevoApellido);
         perso.setNombre(nuevoNombre);
-        perso.setEdad(nuevaEdad);
-
+        perso.setTitulo(nuevoTitulo);
+        perso.setDescripcion(nuevoDescripcion);
         interPersona.savePersona(perso);
-
         return perso;
     }
   
-      @PutMapping("personas/editarLogueo/{id}")
+    @PutMapping("personas/editarLogueo/{id}")
     public Persona editPersonaLogueo(
             @PathVariable Long id,
             @RequestParam("logueado") int nuevoLogueado) {
-
         Persona perso = interPersona.findPersona(id);
         perso.setLogueado(nuevoLogueado);
         interPersona.savePersona(perso);
@@ -118,7 +110,6 @@ public class Controlador {
     //Experiencia
     @Autowired
     private IExperienciaService interExperiencia;
-
     @GetMapping("/experiencia/traer")
     public List<Experiencia> getExperiencia() {
         return interExperiencia.getExperiencia();
@@ -140,7 +131,6 @@ public class Controlador {
     public String deleteExperiencia(@PathVariable Long id) {
         interExperiencia.deleteExperiencia(id);
         return "La Experiencia fue eliminada correctamente";
-
     }
 
     @PutMapping("experiencia/editar/{id}")
@@ -158,7 +148,6 @@ public class Controlador {
         expe.setFechaDesde(fechaDesde);
         expe.setFechaHasta(fechaHasta);
         expe.setTareas(tareas);
-
         interExperiencia.saveExperiencia(expe);
         return expe;
     }
@@ -166,7 +155,6 @@ public class Controlador {
     //Educacion
     @Autowired
     private IEducacionService interEducacion;
-
     @GetMapping("/educacion/traer")
     public List<Educacion> getEducacion() {
         return interEducacion.getEducacion();
@@ -188,7 +176,6 @@ public class Controlador {
     public String deleteEducacion(@PathVariable Long id) {
         interEducacion.deleteEducacion(id);
         return "La Educacion fue eliminada correctamente";
-
     }
 
     @PutMapping("educacion/editar/{id}")
@@ -232,7 +219,6 @@ public class Controlador {
     public String deleteProyectos(@PathVariable Long id) {
         interProyectos.deleteProyectos(id);
         return "El Proyecto fue eliminada correctamente";
-
     }
 
     @PutMapping("proyectos/editar/{id}")
@@ -337,8 +323,50 @@ public class Controlador {
     @GetMapping("/time")
     @ResponseStatus(HttpStatus.OK)
     public String getCurrentTime() {
-
         return Instant.now().toString();
     }
 
+    //Idiomas
+    @Autowired
+    private IIdiomaService interIdiomas;
+
+    @GetMapping("/idiomas/traer")
+    public List<Idioma> getIdiomas() {
+        return interIdiomas.getIdiomas();
+    }
+
+    @GetMapping("/idiomas/traerUno/{id}")
+    public Idioma findIdiomas(@PathVariable Long id) {
+        Idioma idio = interIdiomas.findIdiomas(id);
+        return idio;
+    }
+
+    @PostMapping("/idiomas/crear")
+    public String createIdiomas(@RequestBody Idioma idio) {
+        interIdiomas.saveIdiomas(idio);
+        return "El Idioma fue creado correctamente";
+    }
+
+    @DeleteMapping("/idiomas/borrar/{id}")
+    public String deleteIdiomas(@PathVariable Long id) {
+        interIdiomas.deleteIdiomas(id);
+        return "El Idiomas fue eliminado correctamente";
+    }
+
+    @PutMapping("idiomas/editar/{id}")
+    public Idioma editIdiomas(
+            @PathVariable Long id,
+            @RequestParam("nombre") String nuevoNombre,
+            @RequestParam("habilidad") String nuevahabilidad,
+            @RequestParam("porcentaje") String nuevoporcentaje) {
+        Idioma idio = interIdiomas.findIdiomas(id);
+        idio.setNombre(nuevoNombre);
+        idio.setHabilidad(nuevahabilidad);
+        idio.setPorcentaje(nuevoporcentaje);
+
+        interIdiomas.saveIdiomas(idio);
+        return idio;
+    }
+    
+    
 }
