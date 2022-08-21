@@ -1,19 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.demo.service;
-
 import com.example.demo.model.Persona;
 import com.example.demo.repository.PersonaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-/**
- *
- * @author usuario
- */
 
 @Service
 public class PersonaService implements IPersonaService{
@@ -47,5 +37,11 @@ public class PersonaService implements IPersonaService{
     public boolean existsByEmail(String email) {
        return persoRepository.existsByEmail(email);
     }
- 
+    
+    @Override
+    public boolean existsByPassword(String password) {
+       return persoRepository.existsByPassword(password);
+    }
+    
+
 }
