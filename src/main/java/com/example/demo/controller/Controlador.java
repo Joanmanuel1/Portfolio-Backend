@@ -36,13 +36,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("/")
 
 //ACCEDEN TODOS
-//@CrossOrigin(origins= "https://portfolio-front-end-eef7f.web.app", methods= {RequestMethod.GET,RequestMethod.POST})
+//@CrossOrigin(origins= "*", methods= {RequestMethod.GET,RequestMethod.POST})
 
 //ACCEDE UNO SOLO 
-@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
+//@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
 
 // MULTIPLES CONEXIONES dejo de andar en diciembre 22
-//@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app", "https://portfolio-arg-programa.herokuapp.com"}) 
+@CrossOrigin(origins= {"https://portfolio-front-end-eef7f.web.app", "http://localhost:4200"}) 
 
                                                                                         
 public class Controlador {
