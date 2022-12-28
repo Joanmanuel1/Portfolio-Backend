@@ -39,7 +39,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 //ACCEDE UNO SOLO 
 //@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
 
-//@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app", "https://portfolio-arg-programa.herokuapp.com"}) // MULTIPLES CONEXIONES
+// MULTIPLES CONEXIONES dejo de andar en diciembre 22
+//@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app", "https://portfolio-arg-programa.herokuapp.com"}) 
+
                                                                                         
 public class Controlador {
     @Autowired
