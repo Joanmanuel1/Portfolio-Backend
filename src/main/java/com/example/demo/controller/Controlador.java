@@ -31,19 +31,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
 @RestController
 @RequestMapping("/")
 
 //ACCEDEN TODOS
-//@CrossOrigin(origins= "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin
 
 //ACCEDE UNO SOLO 
 //@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
 
 // MULTIPLES CONEXIONES dejo de andar en diciembre 22
 //@CrossOrigin(origins= {"https://portfolio-front-end-eef7f.web.app", "http://localhost:4200"}) 
-@CrossOrigin(exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
 
                                                                                         
 public class Controlador {
