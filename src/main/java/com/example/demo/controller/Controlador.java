@@ -32,11 +32,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 
-// ACCEDEN TODOS
-//@CrossOrigin  
+//ACCEDEN TODOS
+ @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 
 //ACCEDE UNO SOLO 
-@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
+//@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
 
 //@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-front-end-eef7f.web.app", "https://portfolio-arg-programa.herokuapp.com"}) // MULTIPLES CONEXIONES
                                                                                         
