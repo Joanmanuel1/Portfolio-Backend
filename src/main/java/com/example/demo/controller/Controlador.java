@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("/")
 
 //ACCEDEN TODOS
-@CrossOrigin(origins= "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins= "https://portfolio-front-end-eef7f.web.app", methods= {RequestMethod.GET,RequestMethod.POST})
 
 //ACCEDE UNO SOLO 
 //@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
