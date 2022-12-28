@@ -42,7 +42,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 //@CrossOrigin(origins = "https://portfolio-front-end-eef7f.web.app")
 
 // MULTIPLES CONEXIONES dejo de andar en diciembre 22
-@CrossOrigin(origins= {"https://portfolio-front-end-eef7f.web.app", "http://localhost:4200"}) 
+//@CrossOrigin(origins= {"https://portfolio-front-end-eef7f.web.app", "http://localhost:4200"}) 
+@CrossOrigin(exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
 
                                                                                         
 public class Controlador {
